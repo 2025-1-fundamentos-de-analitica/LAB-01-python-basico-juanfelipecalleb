@@ -24,3 +24,20 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    with open('files/input/data.csv', 'r') as datos:
+        dic = {}
+        for row in datos:
+            col = row.split('\t')[4]
+            espe = col.split(',')
+
+            for reg in espe:
+                reg = reg.split(':')
+                if reg[0] in dic:
+                    dic[reg[0]] += 1
+                else:
+                    dic[reg[0]] = 1
+
+
+        dic_sort = dict(sorted(dic.items()))
+
+        return dic_sort

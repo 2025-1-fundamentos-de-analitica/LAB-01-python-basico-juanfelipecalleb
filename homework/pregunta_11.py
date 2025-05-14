@@ -16,3 +16,19 @@ def pregunta_11():
 
 
     """
+    with open('files/input/data.csv', 'r') as datos:
+        dic = {}
+
+        for row in datos:
+            col = row.split('\t')
+            espe = col[3].split(',')
+
+            for nu in espe:
+                if nu in dic:
+                    dic[nu] += int(col[1])
+                else:
+                    dic[nu] = int(col[1])
+
+        ord = dict(sorted(dic.items()))
+
+        return ord

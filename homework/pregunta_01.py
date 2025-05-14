@@ -14,3 +14,11 @@ def pregunta_01():
     214
 
     """
+    acum = 0
+
+    with open('files/input/data.csv', 'r') as datos:
+
+        for line in datos:
+            columnas = line.split('\t')
+            acum += int(columnas[1])
+    return acum

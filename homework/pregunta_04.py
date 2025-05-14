@@ -26,3 +26,24 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open('files/input/data.csv', 'r') as datos:
+        
+        conteo = {}
+
+        for fila in datos:
+            columns = fila.split('\t')
+            fecha = columns[2]
+            fecha = fecha.split('-')
+            mes = fecha[1]
+
+            if mes in conteo:
+                conteo[mes] += 1
+            else:
+                conteo[mes] = 1
+
+        lista = conteo.items()
+        items = [p for p in lista]
+        items.sort()
+
+        return items
+    

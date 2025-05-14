@@ -15,3 +15,25 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    with open('files/input/data.csv', 'r') as datos:
+        dic = {}
+
+        for row in datos:
+            col = row.split('\t')
+            espe = col[4].split(',')
+            
+            val = 0
+
+            for reg in espe:
+                reg = reg.split(':')
+                val += int(reg[1])
+            
+
+            if col[0] in dic:
+                dic[col[0]] += val
+            else:
+                dic[col[0]] = val
+
+        ord = dict(sorted(dic.items()))
+
+        return ord

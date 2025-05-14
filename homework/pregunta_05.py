@@ -15,3 +15,25 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    with open('files/input/data.csv', 'r') as datos:
+
+        valores = {}
+        for ren in datos:
+            columns = ren.split('\t')
+
+            if columns[0] in valores:
+                if valores[columns[0]][0] < columns[1]:
+                    valores[columns[0]][0] = columns[1]
+
+                if valores[columns[0]][1] > columns[1]:
+                    valores[columns[0]][1] = columns[1]
+
+            else:
+                valores[columns[0]] = [columns[1], columns[1]]
+
+        lista = valores.items()
+        items = [(p[0], int(p[1][0]), int(p[1][1])) for p in lista]
+        items.sort()
+
+        return items
+    

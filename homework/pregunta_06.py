@@ -26,3 +26,27 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    with open('files/input/data.csv', 'r') as datos:
+        dic = {}
+        for row in datos:
+            col = row.split('\t')[4]
+            espe = col.split(',')
+
+            for reg in espe:
+                reg = reg.split(':')
+                if reg[0] in dic:
+                    if dic[reg[0]][0] > int(reg[1]):
+                        dic[reg[0]][0] = int(reg[1])
+
+                    if dic[reg[0]][1] < int(reg[1]):
+                        dic[reg[0]][1] = int(reg[1])
+
+                else:
+                    dic[reg[0]] = [int(reg[1]), int(reg[1])]
+
+        lista = dic.items()
+        items = [(d[0], d[1][0], d[1][1]) for d in lista]
+        items.sort()
+
+        return items
+    

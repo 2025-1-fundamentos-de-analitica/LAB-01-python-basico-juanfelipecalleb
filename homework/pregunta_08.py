@@ -27,3 +27,21 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    with open('files/input/data.csv', 'r') as datos:
+        dic = {}
+        for row in datos:
+            col = row.split('\t')
+
+            if int(col[1]) in dic:
+                dic[int(col[1])].add(col[0])
+            else:
+                dic[int(col[1])] = set(col[0])
+
+            
+
+        lista = dic.items()
+        items = [(i[0], sorted(list(i[1]))) for i in lista]
+        items.sort()
+
+        return items
+    
